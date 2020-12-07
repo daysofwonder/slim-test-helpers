@@ -4,7 +4,7 @@ namespace There4Test\Slim\Test;
 
 use There4\Slim\Test\WebTestCase;
 
-class WebTestCaseTest extends \PHPUnit_Framework_TestCase
+class WebTestCaseTest extends \PHPUnit\Framework\TestCase
 {
     public function testSetup()
     {
