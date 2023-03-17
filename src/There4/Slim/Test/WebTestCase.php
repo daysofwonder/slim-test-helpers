@@ -4,7 +4,7 @@ namespace There4\Slim\Test;
 
 use \Slim\Slim;
 
-class WebTestCase extends \PHPUnit_Framework_TestCase
+class WebTestCase extends \PHPUnit\Framework\TestCase
 {
     /** @var \Slim\Slim */
     protected $app;
@@ -13,7 +13,7 @@ class WebTestCase extends \PHPUnit_Framework_TestCase
     protected $client;
 
     // Run for each unit test to setup our slim app environment
-    public function setup()
+    protected function setUp() : void
     {
         // Establish a local reference to the Slim app object
         $this->app = $this->getSlimInstance();

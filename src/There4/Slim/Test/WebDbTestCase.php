@@ -5,7 +5,7 @@ namespace There4\Slim\Test;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use \Slim\Slim;
 
-class WebDbTestCase extends \PHPUnit_Extensions_Database_TestCase
+class WebDbTestCase extends \PHPUnit\Framework\TestCase
 {
     /** @var \Slim\Slim */
     protected $app;
@@ -14,7 +14,7 @@ class WebDbTestCase extends \PHPUnit_Extensions_Database_TestCase
     protected $client;
 
     // Run for each unit test to setup our slim app environment
-    public function setup()
+    protected function setUp() : void
     {
         parent::setUp();
         // Establish a local reference to the Slim app object

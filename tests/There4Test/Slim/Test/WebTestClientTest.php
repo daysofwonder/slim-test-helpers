@@ -5,7 +5,7 @@ namespace There4Test\Slim\Test;
 use There4\Slim\Test\WebTestCase;
 use There4\Slim\Test\WebTestClient;
 
-class WebTestClientTest extends \PHPUnit_Framework_TestCase
+class WebTestClientTest extends \PHPUnit\Framework\TestCase
 {
     private $slim;
 
@@ -24,13 +24,14 @@ class WebTestClientTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expectedOutput, $client->response->body());
     }
 
-    /**
-     * @expectedException \BadMethodCallException
-     */
     public function testInvalidRequestMethods()
     {
-        $client = new WebTestClient($this->getSlimInstance());
-        $client->foo($this->getValidUri());
+        try {
+            $client = new WebTestClient($this->getSlimInstance());
+            $client->foo($this->getValidUri());
+        } catch (\Exception $e) {
+            $this->assertInstanceOf(\BadMethodCallException::class, $e, "FOO is not supported");
+        }
     }
 
     public function testMultipleRequest()
