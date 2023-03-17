@@ -20,7 +20,8 @@
         "source": "https://github.com/there4/slim-test-helpers"
     },
     "require": {
-        "slim/slim": "2.6.4",
+        "php": ">=8.2.0",
+        "slim/slim": "~2.8.0",
         "phpunit/phpunit": "^9.5",
         "illuminate/database": ">=8.0"
     },
