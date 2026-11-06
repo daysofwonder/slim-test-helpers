@@ -34,7 +34,7 @@ class WebTestClientTest extends TestCase
     {
         $this->expectException(\BadMethodCallException::class);
         $client = new WebTestClient($this->getSlimInstance());
-        $client->foo($this->getValidUri());
+        $client->foo(static::getValidUri());
     }
 
     public function testMultipleRequest()
@@ -78,10 +78,10 @@ class WebTestClientTest extends TestCase
         self::assertEquals(json_encode($data), $body);
     }
 
-    public function getValidRequests()
+    public static function getValidRequests()
     {
-        $methods = $this->getValidRequestMethods();
-        $uri = $this->getValidUri();
+        $methods = static::getValidRequestMethods();
+        $uri = static::getValidUri();
         return array_map(
             function ($value) use ($uri) {
                 $input = ($value == 'POST') ? ['test => data'] : array();
@@ -94,15 +94,15 @@ class WebTestClientTest extends TestCase
     private function getSlimInstance()
     {
         if (!$this->slim) {
-            $testCase   = new WebTestCase();
+            $testCase   = new WebTestCase('WebTestClientTest');
             $this->slim = $testCase->getSlimInstance();
-            $methods    = $this->getValidRequestMethods();
+            $methods    = static::getValidRequestMethods();
             $callback   = function ($req, $res) {
                 return $res->write('This is a test!');
             };
 
             foreach ($methods as $method) {
-                $this->slim->map([$method], $this->getValidUri(), $callback);
+                $this->slim->map([$method], static::getValidUri(), $callback);
             }
         }
 
@@ -124,7 +124,7 @@ class WebTestClientTest extends TestCase
         self::assertEquals($value, $client->request->getCookieParams()[$key]);
     }
 
-    private function getValidRequestMethods()
+    private static function getValidRequestMethods()
     {
         return array(
             'GET',
@@ -136,7 +136,7 @@ class WebTestClientTest extends TestCase
             'HEAD');
     }
 
-    private function getValidUri()
+    private static function getValidUri()
     {
         return '/testing';
     }

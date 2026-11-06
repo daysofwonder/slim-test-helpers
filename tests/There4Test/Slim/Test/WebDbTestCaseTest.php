@@ -9,7 +9,7 @@ class WebDbTestCaseTest extends TestCase
 {
     public function testExtendsDbUnit()
     {
-        $testCase = new WebDbTestCase();
+        $testCase = new WebDbTestCase('WebDbTestCase');
         self::assertInstanceOf(
             '\PHPUnit\Framework\TestCase',
             $testCase
@@ -18,7 +18,7 @@ class WebDbTestCaseTest extends TestCase
 
     public function testSetup()
     {
-        $testCase = new WebDbTestCase();
+        $testCase = new WebDbTestCase('WebDbTestCase');
         $testCase->setup();
 
         $actualClass   = get_class($testCase->client);
@@ -34,7 +34,7 @@ class WebDbTestCaseTest extends TestCase
             'debug'   => false,
             'mode'    => 'testing'
         );
-        $testCase = new WebDbTestCase();
+        $testCase = new WebDbTestCase('WebDbTestCase');
         $slim = $testCase->getSlimInstance();
         self::assertInstanceOf('\Slim\App', $slim);
         foreach ($expectedConfig as $key => $value) {

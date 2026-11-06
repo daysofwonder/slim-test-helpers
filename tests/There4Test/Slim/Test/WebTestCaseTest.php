@@ -9,7 +9,7 @@ class WebTestCaseTest extends TestCase
 {
     public function testSetup()
     {
-        $testCase = new WebTestCase();
+        $testCase = new WebTestCase('WebTestCase');
         $testCase->setup();
         self::assertInstanceOf('\Slim\App', $testCase->getSlimInstance());
     }
@@ -21,7 +21,7 @@ class WebTestCaseTest extends TestCase
             'debug'   => false,
             'mode'    => 'testing'
         );
-        $testCase = new WebTestCase();
+        $testCase = new WebTestCase('WebTestCase');
         $slim = $testCase->getSlimInstance();
         self::assertInstanceOf('\Slim\App', $slim);
         foreach ($expectedConfig as $key => $value) {

@@ -2,6 +2,7 @@
 
 namespace There4\Slim\Test;
 
+use Override;
 use PDO;
 use \PHPUnit\Framework\TestCase;
 
